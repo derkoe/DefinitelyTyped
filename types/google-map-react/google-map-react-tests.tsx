@@ -8,7 +8,7 @@ import * as React from 'react';
 const center = { lat: 0, lng: 0 };
 
 const key: BootstrapURLKeys = { key: 'my-google-maps-key', libraries: "places" };
-const client: BootstrapURLKeys = { client: 'my-client-identifier', version: '3.28' , language: 'en', libraries: "places", region: "PR", id: 'custom-id' };
+const client: BootstrapURLKeys = { client: 'my-client-identifier', version: '3.28', language: 'en', libraries: "places", region: "PR", id: 'custom-id' };
 const options: MapOptions = {
     zoomControl: false,
     gestureHandling: 'cooperative',
@@ -17,32 +17,36 @@ const options: MapOptions = {
         {
             featureType: "administrative",
             elementType: "all",
-            stylers: [ {saturation: "-100"} ]
+            stylers: [{ saturation: "-100" }]
         },
         {
             featureType: "administrative.neighborhood",
-            stylers: [ {visibility: "off" } ]
+            stylers: [{ visibility: "off" }]
         },
         {
             elementType: "labels.text.stroke",
-            stylers: [ {color: "#242f3e"} ]
+            stylers: [{ color: "#242f3e" }]
         },
         {
-            stylers: [ {color: "#fcfffd"} ]
+            stylers: [{ color: "#fcfffd" }]
         }
     ],
 };
 
-<GoogleMapReact center={center} heatmapLibrary={true} zoom={3} bootstrapURLKeys={client} options={options} />;
+const AnyReactComponent = ({ text }: { text: string, lat: number, lng: number }) => <div>{text}</div>;
+
+<GoogleMapReact center={center} heatmapLibrary={true} zoom={3} bootstrapURLKeys={client} options={options}>
+    <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
+</GoogleMapReact>;
 
 const bounds: NESWBounds = {
     ne: {
-      lat: 55,
-      lng: 10,
+        lat: 55,
+        lng: 10,
     },
     sw: {
-      lat: 45,
-      lng: 20,
+        lat: 45,
+        lng: 20,
     }
 };
 
